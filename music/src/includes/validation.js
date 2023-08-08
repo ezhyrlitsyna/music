@@ -36,7 +36,15 @@ export default {
       generateMessage: (ctx) => {
 
         const messages = {
-          required: `The field ${ctx.field} is required`
+          required: `The field ${ctx.field} is required`,
+          email: `The field ${ctx.field} must be a valid email`,
+          min: `The field ${ctx.field} is too short`,
+          max: `The field ${ctx.field} is too long`,
+          alpha_spaces: `The field ${ctx.field} may only contain alphabetic characters and spaces`,
+          min_value: `The field ${ctx.field} is too low`,
+          max_value: `The field ${ctx.field} is too high`,
+          confirmed: `The field ${ctx.field} confirmation does not match`,
+          excluded: `You are not allowed to use this value for the field ${ctx.field}`
         }
 
         const message = messages[ctx.rule.name] ? messages[ctx.rule.name] : 'Some rule'

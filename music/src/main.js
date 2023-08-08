@@ -7,11 +7,17 @@ import VeeValidate from '@/includes/validation'
 
 import './assets/base.css'
 import './assets/main.css'
+import { auth } from './includes/firebase'
 
-const app = createApp(App)
+let app
+auth.onAuthStateChanged(() => {
+  if (!app) {
+    app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
-app.use(VeeValidate)
+    app.use(createPinia())
+    app.use(router)
+    app.use(VeeValidate)
 
-app.mount('#app')
+    app.mount('#app')
+  }
+})

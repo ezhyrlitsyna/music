@@ -267,13 +267,22 @@
   <AppAuth />
 </template>
 <script>
+import useUserStore from '@/stores/user'
+import { mapWritableState } from 'pinia'
 import AppHeader from '@/components/AppHeader.vue'
 import AppAuth from '@/components/AppAuth.vue'
+import { auth } from '@/includes/firebase'
 export default {
   name: 'App',
   components: {
     AppHeader,
     AppAuth
+  },
+  computed: {
+    ...mapWritableState(useUserStore, ['userIsLoggedIn'])
+  },
+  created() {
+    if (auth.currentUser) this.userIsLoggedIn = true
   }
 }
 </script>
