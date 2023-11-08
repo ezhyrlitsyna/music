@@ -41,6 +41,9 @@
   </div>
 </template>
 <script>
+import {mapActions} from 'pinia'
+import useUserStore from '@/stores/user'
+
 export default {
   name: 'LoginForm',
   data() {
@@ -56,14 +59,27 @@ export default {
     }
   },
   methods: {
-    login() {
+    ...mapActions(useUserStore, ['authenticate']),
+    async login(values) {
 			this.loginInProgress = true
       this.loginFormIsValid = true
       this.loginAlertClasses = 'bg-blue-500'
       this.loginText = 'Authorization in progress.Wait'
 
+      try{
+
+      await this.authenticate(values)
+      }
+      catch(error){
+        this.loginFormIsValid = false
+        this.loginAlertClasses = 'bg-red-500'
+        this.loginText = 'Invalid login'
+        return
+      }
+
       this.loginAlertClasses = 'bg-green-500'
       this.loginText = 'Authorization has finished successfully'
+      window.location.reload()
     }
   }
 }

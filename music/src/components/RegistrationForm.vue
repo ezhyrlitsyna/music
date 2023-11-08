@@ -142,6 +142,8 @@ export default {
 
       this.registerAlertClasses = 'bg-green-500'
       this.registerText = 'Registration has finished successfully'
+      window.location.reload()
+
     }
   }
 }
