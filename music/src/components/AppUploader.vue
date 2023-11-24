@@ -21,6 +21,7 @@
 			>
         <h5>Drop your files here</h5>
       </div>
+      <input type="file" multiple @change="upload($event)" />
       <hr class="my-6" />
       <!-- Progess Bars -->
       <div class="mb-4" v-for="upload in uploads" :key="upload.name">
@@ -44,9 +45,14 @@
   </div>
 </template>
 <script>
-import { storage } from '@/includes/firebase'
+import { storage, auth, songCollection } from '@/includes/firebase'
 export default {
   name: 'AppUploader',
+  props: {
+    addSong: {
+      type: Function,
+    }
+  },
 	data() {
 		return {
 			isDragOver: false,
@@ -57,7 +63,7 @@ export default {
 		upload(event) {
 			this.isDragOver = false
 
-			const files = [...event.dataTransfer.files]
+			const files = event.dataTransfer ? [...event.dataTransfer.files] : [...event.target.files]
 
 			files.forEach((file) => {
 				if (file.type !== 'audio/mpeg') {
@@ -83,19 +89,39 @@ export default {
 
           this.uploads[uploadIndex].currentProgress = progress
 
-          console.log(progress)
         }, (error) => {
           this.uploads[uploadIndex].variant = 'bg-red-400'
           this.uploads[uploadIndex].textClass = 'text-red-400'
           this.uploads[uploadIndex].icon = 'fas fa-times'
           console.log(error)
-        }, () => {
+
+        }, async() => {
+
+          const song = {
+            uid: auth.currentUser.uid,
+            display_name: auth.currentUser.displayName,
+            original_name: task.snapshot.ref.name,
+            modified_name: task.snapshot.ref.name,
+            genre: '',
+            comments_count: 0,
+          }
+
+          const songRef = await songCollection.add(song)
+          const songSnapshot = await songRef.get()
+
+          this.addSong(songSnapshot)
+
           this.uploads[uploadIndex].variant = 'bg-green-400'
           this.uploads[uploadIndex].textClass = 'text-green-400'
           this.uploads[uploadIndex].icon = 'fas fa-check'
         })
 			})
 		}
-	}
+	},
+  beforeUnmount() {
+    this.uploads.forEach((upload) => {
+      upload.task.cancel()
+    })
+  }
 }
 </script>
