@@ -106,6 +106,8 @@ export default {
             comments_count: 0,
           }
 
+          song.url = await task.snapshot.ref.getDownloadURL()
+
           const songRef = await songCollection.add(song)
           const songSnapshot = await songRef.get()
 
