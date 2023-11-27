@@ -22,8 +22,7 @@ export const formatTimeAgo = (date) => {
 	let interval
 
   const seconds = Math.floor((new Date() - new Date(date)) / 1000);
-	// eslint-disable-next-line no-debugger
-	debugger
+
   interval = seconds / 31536000;
 
   if (interval > 1) {
