@@ -47,7 +47,7 @@ export default {
     SongItem
   },
   directives: {
-    IconSecondary
+    'icon-secondary': IconSecondary
   },
   data() {
     return {
