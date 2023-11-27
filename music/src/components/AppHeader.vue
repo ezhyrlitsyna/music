@@ -1,25 +1,22 @@
 <template>
   <header id="header" class="bg-gray-700">
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
-      <!-- App Name -->
       <router-link
         class="text-white font-bold uppercase text-2xl mr-4"
         exact-active-class="no-active"
         :to="{ name: 'HomePage' }"
       >
-        Music
+        {{ $t('header.music') }}
       </router-link>
 
       <div class="flex flex-grow items-center">
-        <!-- Primary Navigation -->
         <ul class="flex flex-row mt-1">
-          <!-- Navigation Links -->
           <li>
             <router-link
               class="px-2 text-white"
               :to="{ name: 'AboutPage' }"
             >
-              About
+              {{ $t('header.about') }}
             </router-link>
           </li>
           <template v-if="!userIsLoggedIn">
@@ -29,7 +26,7 @@
                 href="#"
                 @click.prevent="toggleAuthModal"
               >
-                Login / Register
+                {{ $t('auth.login') }} / {{ $t('auth.register') }}
               </a>
             </li>
           </template>
@@ -39,7 +36,7 @@
                 class="px-2 text-white"
                 :to="{ name: 'ManagePage' }"
               >
-                Manage
+                {{ $t('header.manage') }}
               </router-link>
             </li>
             <li>
@@ -48,10 +45,21 @@
                 href="#"
                 @click.prevent="signOut"
               >
-                Logout
+                {{ $t('header.logout') }}
               </a>
             </li>
           </template>
+        </ul>
+        <ul class="ml-auto">
+          <li>
+            <a
+              class="px-2 text-white"
+              href="#"
+              @click.prevent="changeLocal"
+            >
+              {{ currentLocale }}
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -66,7 +74,10 @@ export default {
   computed: {
     ...mapStores(useModalStore, useUserStore),
     ...mapWritableState(useModalStore, ['isOpened']),
-    ...mapWritableState(useUserStore, ['userIsLoggedIn'])
+    ...mapWritableState(useUserStore, ['userIsLoggedIn']),
+    currentLocale() {
+      return this.$i18n.locale === 'en' ? 'EN' : 'UA'
+    }
   },
   methods: {
     toggleAuthModal() {
@@ -77,6 +88,9 @@ export default {
       if (this.$route.meta?.requiresAuth) {
         this.$router.push({ name: 'HomePage' })
       }
+    },
+    changeLocal() {
+      this.$i18n.locale = this.$i18n.locale === 'en' ? 'uk' : 'en'
     }
   }
 }

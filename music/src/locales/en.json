@@ -1,5 +1,61 @@
 {
-	"home":{
-		"listen": "Listen to Great Music!"
+	"home": {
+		"listen": "Listen to Great Music!",
+		"songs": "Songs"
+	},
+	"song": {
+		"comments_count": "No comments | 1 comment | {count} comments"
+	},
+	"auth": {
+		"your_account": "Your Account",
+		"login": "Login",
+		"register": "Register"
+	},
+	"header": {
+		"music": "Music",
+		"about": "About",
+		"manage": "Manage",
+		"logout": "Logout"
+	},
+	"register": {
+		"name": "Name",
+		"enter_name": "Enter name",
+		"age": "Age",
+		"confirm_password": "Confirm password",
+		"country": "Country",
+		"USA": "USA",
+		"Mexico": "Mexico",
+		"Germany": "Germany",
+		"Ukraine": "Ukraine",
+		"Antarctica": "Antarctica",
+		"registration_in_progress": "Registration in progress. Wait",
+		"error_registration": "An unexpected error occurred. Please try again later.",
+		"success_registration": "Registration has finished successfully!",
+		"accept": "I accept Music's {0}",
+		"tos": "Terms of Service"
+	},
+	"login": {
+		"enter_email": "Enter email",
+		"password": "Password",
+		"enter_password": "Enter password",
+		"submit": "Submit",
+		"auth_in_progress": "Authorization in progress.Wait",
+		"error_auth": "Something went wrong. Please try again.",
+		"success_auth": "Authorization has finished successfully!"
+	},
+	"manage": {
+		"upload": "Upload",
+		"drop_files": "Drop your files here",
+		"choose_files": "Choose files",
+		"my_songs": "My Songs",
+		"song_title": "Song Title",
+		"enter_song_title": "Enter song title",
+		"genre": "Genre",
+		"enter_genre": "Enter genre",
+		"submit": "Submit",
+		"go_back": "Go Back",
+		"updating": "Updating song information...",
+		"error_updating": "Something went wrong. Please try again.",
+		"success_updating": "Song information updated successfully!"
 	}
 }

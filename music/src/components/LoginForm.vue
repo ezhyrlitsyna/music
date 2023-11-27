@@ -9,25 +9,23 @@
     </div>
 
     <vee-form :validationSchema="loginSchema" @submit="login">
-      <!-- Email -->
       <div class="mb-3">
         <label class="inline-block mb-2">Email</label>
         <vee-field
           name="email"
           type="email"
           class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-          placeholder="Enter Email"
+          :placeholder="$t('login.enter_email')"
         />
         <error-message class="text-red-600" name="email" />
       </div>
-      <!-- Password -->
       <div class="mb-3">
-        <label class="inline-block mb-2">Password</label>
+        <label class="inline-block mb-2">{{ $t('login.password') }}</label>
         <vee-field
           name="password"
           type="password"
           class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-          placeholder="Password"
+          :placeholder="$t('login.enter_password')"
         />
         <error-message class="text-red-600" name="password" />
       </div>
@@ -35,7 +33,7 @@
         type="submit"
         class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700"
       >
-        Submit
+        {{ $t('login.submit') }}
       </button>
     </vee-form>
   </div>
@@ -53,7 +51,7 @@ export default {
         password: 'required|min:6|max:16'
       },
       loginInProgress: false,
-      loginText: 'Authorization in progress.Wait',
+      loginText: this.$i18n.t('login.auth_in_progress'),
       loginAlertClasses: 'bg-blue-500',
       loginFormIsValid: false
     }
@@ -64,7 +62,7 @@ export default {
 			this.loginInProgress = true
       this.loginFormIsValid = true
       this.loginAlertClasses = 'bg-blue-500'
-      this.loginText = 'Authorization in progress.Wait'
+      this.loginText = this.$i18n.t('login.auth_in_progress')
 
       try{
 
@@ -73,12 +71,12 @@ export default {
       catch(error){
         this.loginFormIsValid = false
         this.loginAlertClasses = 'bg-red-500'
-        this.loginText = 'Invalid login'
+        this.loginText = this.$i18n.t('login.error_auth')
         return
       }
 
       this.loginAlertClasses = 'bg-green-500'
-      this.loginText = 'Authorization has finished successfully'
+      this.loginText = this.$i18n.t('login.success_auth')
       window.location.reload()
     }
   }

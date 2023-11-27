@@ -8,7 +8,7 @@
       <div class="container mx-auto flex items-center">
         <button
           type="button"
-          class="z-50 h-24 w-24 text-3xl bg-white text-black rounded-full focus:outline-none"
+          class="z-40 h-24 w-24 text-3xl bg-white text-black rounded-full focus:outline-none"
           @click.prevent="setCurrentSong(song)"
         >
           <i class="fas" :class="{'fa-play': !isPlaying, 'fa-pause': isPlaying }" />
@@ -16,13 +16,14 @@
         <div class="z-50 text-left ml-8">
           <div class="text-3xl font-bold">{{ song.modified_name }}</div>
           <div v-if="song.genre">{{ song.genre }}</div>
+          <div>{{ $n(1, 'currency') }}</div>
         </div>
       </div>
     </section>
     <section class="container mx-auto mt-6">
       <div class="bg-white rounded border border-gray-200 relative flex flex-col">
         <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
-          <span class="card-title">Comments ({{ song.comments_count }})</span>
+          <span class="card-title">{{$tc('song.comments_count', song.comments_count, { count: song.comments_count})}}</span>
           <i class="fa fa-comments float-right text-green-400 text-2xl" />
         </div>
         <div class="p-6">

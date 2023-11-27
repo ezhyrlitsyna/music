@@ -9,4 +9,18 @@ export default createI18n({
 		en,
 		uk,
 	},
+	numberFormats: {
+		en: {
+			currency: {
+				style: 'currency',
+				currency: 'USD',
+			},
+		},
+		uk: {
+			currency: {
+				style: 'currency',
+				currency: 'UAH',
+			},
+		},
+	},
 });
