@@ -13,7 +13,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ['vue-i18n']
+      external: ['vue-i18n', 'howler']
     }
   }
 })
