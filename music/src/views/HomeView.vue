@@ -41,7 +41,7 @@
 </template>
 <script>
 import { songCollection } from '@/includes/firebase'
-import IconSecondary from '@/directives/IconSecondary'
+import IconSecondary from '@/directives/iconSecondary'
 
 import SongItem from '@/components/SongItem.vue'
 
