@@ -4,7 +4,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import VeeValidate from '@/includes/validation'
-import i18n from './includes/i18n'
+import i18n from '@/includes/i18n'
 
 import './assets/base.css'
 import './assets/main.css'
