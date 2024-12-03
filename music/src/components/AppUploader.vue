@@ -91,6 +91,7 @@ export default {
         }) - 1
 
         task.on('state_changed', (snapshot) => {
+        debugger
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
 
           this.uploads[uploadIndex].currentProgress = progress
